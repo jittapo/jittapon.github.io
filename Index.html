@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+<style>
+body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+.w3-row-padding img {margin-bottom: 12px}
+/* Set the width of the sidebar to 120px */
+.w3-sidebar {width: 120px;background: #595959;}
+/* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+#main {margin-left: 120px}
+/* Remove margins from "page content" on small screens */
+@media only screen and (max-width: 600px) {#main {margin-left: 0}}
+
+/* เอฟเฟค Glitch สำหรับหัวข้อ */
+.glitch {
+  position: relative;
+  font-size: 4rem;
+  color: white;
+  font-weight: bold;
+  animation: glitch-animation 1s infinite;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: white;
+  background: black;
+  overflow: hidden;
+  clip: rect(0, 900px, 0, 0);
+}
+
+.glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 red;
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-animation-before 1s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: -2px 0 blue;
+  clip: rect(85px, 450px, 140px, 0);
+  animation: glitch-animation-after 0.8s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-animation {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes glitch-animation-before {
+  0% {
+    clip: rect(44px, 9999px, 56px, 0);
+    transform: skew(0.3deg);
+  }
+  50% {
+    clip: rect(10px, 9999px, 100px, 0);
+    transform: skew(-0.3deg);
+  }
+  100% {
+    clip: rect(85px, 9999px, 140px, 0);
+    transform: skew(0.3deg);
+  }
+}
+
+@keyframes glitch-animation-after {
+  0% {
+    clip: rect(130px, 9999px, 160px, 0);
+    transform: skew(-0.3deg);
+  }
+  50% {
+    clip: rect(10px, 9999px, 80px, 0);
+    transform: skew(0.3deg);
+  }
+  100% {
+    clip: rect(100px, 9999px, 120px, 0);
+    transform: skew(-0.3deg);
+  }
+}
+
+/* Fade-in animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Progress Bar Animation */
+@keyframes progressBar {
+  0% { width: 0; }
+  100% { width: 95%; } /* Adjust percentage as needed */
+}
+
+/* Text Effect */
+.text-effect {
+  font-size: 2rem;
+  color: #FF5733; /* Bright color for emphasis */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Shadow for 3D effect */
+  animation: text-animation 2s infinite;
+}
+
+@keyframes text-animation {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* 3D Hover Effect */
+.card {
+  perspective: 1000px;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 800px;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+
+.card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.card-front {
+  background: #000000;
+}
+
+.card-back {
+  background: #000000;
+  transform: rotateY(180deg);
+}
+
+/* Animated Background */
+@keyframes backgroundAnimation {
+  0% { background-color: #1a1a1a; }
+  50% { background-color: #333; }
+  100% { background-color: #1a1a1a; }
+}
+
+body {
+  animation: backgroundAnimation 10s infinite;
+}
+</style>
+</head>
+<body class="w3-black">
+
+<!-- Icon Bar (Sidebar - hidden on small screens) -->
+<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+  <!-- Avatar image in top left corner -->
+  <img src="images/avatar_smoke.jpg" style="width:100%">
+  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-home w3-xxlarge"></i>
+    <p>HOME</p>
+  </a>
+  <a href="#about" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-user w3-xxlarge"></i>
+    <p>ABOUT</p>
+  </a>
+  <a href="#photos" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-eye w3-xxlarge"></i>
+    <p>Portfolio</p>
+  </a>
+  <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-envelope w3-xxlarge"></i>
+    <p>CONTACT</p>
+  </a>
+</nav>
+
+<!-- Navbar on small screens (Hidden on medium and large screens) -->
+<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+  <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
+    <a href="#" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
+    <a href="#about" class="w3-bar-item w3-button" style="width:25% !important">ABOUT</a>
+    <a href="#photos" class="w3-bar-item w3-button" style="width:25% !important">Portfolio</a>
+    <a href="#contact" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>
+  </div>
+</div>
+
+<!-- Page Content -->
+<div class="w3-padding-large" id="main">
+  <!-- Header/Home -->
+  <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
+    <h1 class="glitch" data-text="BOMB BOY">I'm BOMB BOY</h1>
+
+    <p class="text-effect">ชีวิตเราเริ่มใหม่ได้เสมอ ถ้าเราไม่คิดจะยอมแพ้</p> 
+    <img src="images/man_smoke.jpg" alt="boy" class="w3-image" width="992" height="1108">
+  </header>
+
+  <audio controls autoplay loop>
+    <source src="SnapSave.io - 【爽快に】アイラ 歌ってみた ver.Sou (128 kbps).mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- About Section -->
+  <div class="w3-content w3-justify w3-text-grey w3-padding-64 fade-in" id="about">
+    <h2 class="w3-text-light-grey">ประวัติส่วนตัว </h2>
+    <hr style="width:200px" class="w3-opacity">
+    <p>สวัสดีคับ! ผมชื่อ นายจิตรภณ เพ็ญภูมิ อายุ 19 ปี เป็นนักศึกษาจาก วิทยาลัยเทคนิคลพบุรี ในสาขา เทคโนโลยีคอมพิวเตอร์ ผมสนใจและมีความเชี่ยวชาญด้าน งานด้านอนิชั้นและมีความเชี่ยวชาญด้านการออกแบบ
+    </p>
+    <h2 class="w3-text-light-grey">ประวัติการฝึกงาน </h2>
+    <hr style="width:200px" class="w3-opacity">
+    <p>นักออกแบบกราฟิก บริษัท หจก.กรสกีนแอนร์ติ้ง : รับผิดชอบงานออกแบบสติ๊กเกอร์
+    </p>
+
+  <!-- Portfolio Section -->
+  <div class="w3-padding-64 w3-content fade-in" id="photos">
+    <h2 class="w3-text-light-grey">Portfolio</h2>
+    <hr style="width:200px" class="w3-opacity">
+
+    <!-- Grid for photos -->
+    <div class="w3-row-padding" style="margin:0 -16px">
+      <div class="w3-half">
+        <div class="card">
+          <div class="card-inner">
+            <div class="card-front">
+              <a href="images/rocks.jpg" data-lightbox="portfolio"><img src="images/rocks.jpg" style="width:100%"></a>
+            </div>
+            <div class="card-back">
+              <a href="images/rocks.jpg" data-lightbox="portfolio"><img src="images/rocks.jpg" style="width:100%"></a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-inner">
+            <div class="card-front">
+              <a href="images/sailboat.jpg" data-lightbox="portfolio"><img src="images/sailboat.jpg" style="width:100%"></a>
+            </div>
+            <div class="card-back">
+              <a href="images/sailboat.jpg" data-lightbox="portfolio"><img src="images/sailboat.jpg" style="width:100%"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="w3-half">
+        <div class="card">
+          <div class="card-inner">
+            <div class="card-front">
+              <a href="images/wedding.jpg" data-lightbox="portfolio"><img src="images/wedding.jpg" style="width:100%"></a>
+            </div>
+            <div class="card-back">
+              <a href="images/wedding.jpg" data-lightbox="portfolio"><img src="images/wedding.jpg" style="width:100%"></a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-inner">
+            <div class="card-front">
+              <a href="images/p6.jpg" data-lightbox="portfolio"><img src="images/p6.jpg" style="width:100%"></a>
+            </div>
+            <div class="card-back">
+              <a href="images/p6.jpg" data-lightbox="portfolio"><img src="images/p6.jpg" style="width:100%"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- End photo grid -->
+    </div>
+  <!-- End Portfolio Section -->
+  </div>
+
+  <!-- Contact Section -->
+  <div class="w3-padding-64 w3-content w3-text-grey fade-in" id="contact">
+    <h2 class="w3-text-light-grey">Contact Me</h2>
+    <hr style="width:200px" class="w3-opacity">
+    
+    <div class="w3-section">
+      <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Chicago, US</p>
+      <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: 0635877549</p>
+      <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: jittaponpenpoom@gmail.com</p>
+    </div><br>
+        </button>
+      </p>
+    </form>
+  <!-- End Contact Section -->
+  </div>
+  
+  <!-- Footer -->
+  <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
+    <a href="https://www.facebook.com/profile.php?id=100022101578545&locale=th_TH" target="_blank">
+      <i class="fa fa-facebook-official w3-hover-opacity"></i></a>
+    <a href="https://www.instagram.com/bom_._b/" target="_blank">
+      <i class="fa fa-instagram w3-hover-opacity"></i></a>
+    <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+  <!-- End footer -->
+  </footer>
+
+<!-- END PAGE CONTENT -->
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
+<script>
+// Smooth Scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+// Fade-in animation
+const faders = document.querySelectorAll('.fade-in');
+const appearOptions = {
+  threshold: 0.1,
+  rootMargin: "0px 0px -100px 0px"
+};
+
+const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) {
+      return;
+    } else {
+      entry.target.classList.add('show');
+      appearOnScroll.unobserve(entry.target);
+    }
+  });
+}, appearOptions);
+
+faders.forEach(fader => {
+  appearOnScroll.observe(fader);
+});
+</script>
+
+</body>
+</html>
